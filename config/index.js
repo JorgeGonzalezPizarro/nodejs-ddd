@@ -5,7 +5,7 @@ const path = require('path');
 
 const ENV = process.env.NODE_ENV || 'development';
 
-const envConfig = require(path.join(__dirname, 'enviroments', ENV));
+const envConfig = require(path.join(__dirname, 'environments', ENV));
 const dbConfig = loadDbConfig();
 
 const config = Object.assign({

@@ -10,15 +10,14 @@ const app = require('./App');
 const router = require('./interfaces/http/router');
 const loggerMiddleware = require('./interfaces/http/logger/loggerMiddleware');
 
-
-const SequalizeUsersRepository = require('./infra/database/repository/SequalizeUsersRepository');
+const PoliticiansRepository = require('./infra/database/repository/MongoRepository/PoliticiansRepository');
+const container = createContainer();
 
 
 //INFRA
-const {database, User: UserModel} = require('./infra/database/Models');
+const {database, models : {PoliticiansSchema}} = require('./infra/database/Mongodb');
 const logger = require('./infra/logger/loggerLog4js');
 
-const container = createContainer();
 
 container
   .register({
@@ -51,12 +50,12 @@ container.register({
 
 container.register({
   database: asValue(database),
-  UserModel: asValue(UserModel)
+  PoliticiansSchema: asValue(PoliticiansSchema)
 });
 
 
 container.register({
-  userRepository: asClass(SequalizeUsersRepository).singleton()
+  politiciansRepository: asClass(PoliticiansRepository).singleton()
 
 });
 

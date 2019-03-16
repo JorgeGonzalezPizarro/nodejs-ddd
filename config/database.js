@@ -1,17 +1,18 @@
 module.exports = {
   development: {
     username: 'root',
-    password: 'root',
-    database: 'users',
-    host: 'localhost',
-    dialect: 'mysql'
+    password: '',
+    database: 'dbfullstack',
+    host: 'localhost:27017',
+    port: '27017',
+    clientDatabase: 'mongodb'
   },
   test: {
     username: 'root',
     password: 'root',
-    database: 'users',
+    database: 'dbfullstack',
     host: 'localhost',
-    dialect: 'mysql'
+    clientDatabase: 'mongodb'
   },
   production: process.env.DATABASE_URL
 };

@@ -8,17 +8,9 @@ const User = attributes({
     required: true
   },
   age: Number
-})(class User {
-  create({id, name, age}) {
-    return (
-      new User({id: id, name: name, age: this.setAge(age)})
+})(class User {});
 
-    );
-  }
+User.MIN_LEGAL_AGE = 21;
 
-  setAge(age) {
-    return age > 18 ? this.age = age : null;
-  }
-});
 
 module.exports = User;

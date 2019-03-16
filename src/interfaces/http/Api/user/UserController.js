@@ -15,10 +15,18 @@ const UserController = {
     // router.get('');
     return router;
   },
-  listUsers: () => (req, res, next) => {
-    console.log(console.log("aa"));
-    console.log(req.GetListUser.execute())
-   // return GetAllUsers.execute(req.body);
+
+
+
+  listUsers: () => async (req, res, next) => {
+    const {GetListUser } = req;
+    const {events} = GetListUser;
+    GetListUser.on(events.SUCCESS, (users) => {
+      res.status(Status.OK).json(users);
+    })
+      .on(events.ERROR, next);
+
+    await req.GetListUser.execute();
   }
 };
 
