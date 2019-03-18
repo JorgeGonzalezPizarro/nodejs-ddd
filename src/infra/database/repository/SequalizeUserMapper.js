@@ -3,7 +3,7 @@ const SequelizeUserMapper = {
 
   toEntity({dataValues}) {
     return new User({ ...dataValues });
-    },
+  },
   toDatabase(survivor) {
     const { name } = survivor;
 

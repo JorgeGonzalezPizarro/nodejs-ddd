@@ -2,15 +2,19 @@ const {createContainer, asClass, asFunction, asValue} = require('awilix');
 const {scopePerRequest} = require('awilix-express');
 
 const {
-  GetListUser
+  GetListPolitician,
+  Authenticate
 } = require('./application');
 const config = require('../config');
 const Server = require('./interfaces/http/Server');
 const app = require('./App');
 const router = require('./interfaces/http/router');
 const loggerMiddleware = require('./interfaces/http/logger/loggerMiddleware');
+const authMiddleware = require('./interfaces/http/middleware/Auth');
 
-const PoliticiansRepository = require('./infra/database/repository/MongoRepository/PoliticiansRepository');
+const {PoliticiansRepository} = require('./infra/database/repository/MongoRepository');
+const {UserRepository} = require('./infra/database/repository/MongoRepository');
+const {AuthenticationPassport} = require('./infra/auth');
 const container = createContainer();
 
 
@@ -34,8 +38,14 @@ container.register({
 
 
 container.register({
-  GetListUser: asClass(GetListUser)
+  GetListPolitician: asClass(GetListPolitician)
 
+});
+container.register({
+  Authenticate: asClass(Authenticate)
+});
+container.register({
+  authMiddleware: asFunction(authMiddleware).singleton()
 });
 
 container.register({
@@ -46,18 +56,20 @@ container.register({
   loggerMiddleware: asFunction(loggerMiddleware).singleton()
 });
 
-//DATABASE
 
-container.register({
-  database: asValue(database),
-  PoliticiansSchema: asValue(PoliticiansSchema)
-});
 
 
 container.register({
-  politiciansRepository: asClass(PoliticiansRepository).singleton()
+  database: asValue(database)});
+
+
+container.register({
+  politiciansRepository: asClass(PoliticiansRepository).singleton(),
+  UserRepository: asClass(UserRepository).singleton()
 
 });
-
+container.register({
+  AuthenticationPassport: asFunction(AuthenticationPassport).singleton()
+});
 module.exports = container;
 

@@ -23,17 +23,10 @@ module.exports = ({ config, containerMiddleware }) => {
     .use(bodyParser.json())
     .use(compression())
     .use(containerMiddleware);
-  /*
-   * Add your API routes here
-   *
-   * You can use the `controllers` helper like this:
-   * apiRouter.use('/users', controller(controllerPath))
-   *
-   * The `controllerPath` is relative to the `interfaces/http` folder
-   */
-  router.use('/api', apiRouter);
 
-  apiRouter.use('/user', controller('user/UserController'));
+  apiRouter.use('/Politician', controller('Politician/PoliticianController'));
+
+  router.use('/api', apiRouter);
 
 
   return router;

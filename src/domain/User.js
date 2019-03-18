@@ -10,7 +10,6 @@ const User = attributes({
   age: Number
 })(class User {});
 
-User.MIN_LEGAL_AGE = 21;
 
 
 module.exports = User;

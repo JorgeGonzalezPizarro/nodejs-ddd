@@ -1,11 +1,11 @@
 const UseCaseOperation = require('src/application/UseCaseOperation');
 
-class GetListUser extends UseCaseOperation{
-  constructor({politiciansRepository})
-  {
+class GetListPolitician extends UseCaseOperation{
+  constructor({politiciansRepository}) {
     super();
     this.politiciansRepository = politiciansRepository;
   }
+
 
   async execute () {
     try {
@@ -19,6 +19,6 @@ class GetListUser extends UseCaseOperation{
   }
 }
 
-GetListUser.events(['SUCCESS', 'ERROR']);
+GetListPolitician.events(['SUCCESS', 'ERROR']);
 
-module.exports = GetListUser;
+module.exports = GetListPolitician;

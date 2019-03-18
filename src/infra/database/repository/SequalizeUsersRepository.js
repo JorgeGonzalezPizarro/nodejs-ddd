@@ -9,7 +9,7 @@ class SequalizeUsersRepository {
   async getAll(...args){
     console.log('User  model ', this.UserModel);
 
-    const users = this.UserModel.find({},(err,collection) => console.log(collection));
+    const users = this.UserModel.find({}, (err, collection) => console.log(collection));
     return users.map(UserMapper.toEntity);
   }
 }

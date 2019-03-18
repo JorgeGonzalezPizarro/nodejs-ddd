@@ -9,7 +9,7 @@ class App {
 
   async start() {
     if(!this.database) {
-      console.log('no database found')
+      console.log('no database found');
 
     }
     await this.server.start();

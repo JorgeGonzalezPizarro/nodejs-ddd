@@ -1,3 +1,4 @@
 module.exports = {
-  GetListUser: require('./user/GetListUser')
+  GetListPolitician: require('./Politician/GetListPolitician'),
+  Authenticate: require('./Auth/Authenticate')
 };
